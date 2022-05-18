@@ -59,6 +59,30 @@ namespace ChessOOP
             {25,24,23,22,21,23,24,25 },
             };
 
+            //Кнопка рестарта
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            this.ClearButton.Location = new System.Drawing.Point(410, 12);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(51, 23);
+            this.ClearButton.TabIndex = 0;
+            this.ClearButton.Text = "Restart";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            this.Controls.Add(this.ClearButton);
+
+            //Текст для отображение кто ходит
+            this.label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Roboto Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(495, 98);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(115, 23);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Ход белых";
+            this.Controls.Add(this.label1);
+
             currPlayer = 1;
             CreateMap();
         }
@@ -449,16 +473,26 @@ namespace ChessOOP
         public void SwitchPlayer()
         {
             if (currPlayer == 1)
+            {
                 currPlayer = 2;
-            else currPlayer = 1;
+                this.label1.Text = "Ход черных";
+            }
+
+
+            else
+            {
+                currPlayer = 1;
+                this.label1.Text = "Ход белых";
+            }
         }
 
         //кнопка для рестарта
-        private void button1_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             //удаляем все элементы
             this.Controls.Clear();
             Init();
         }
+
     }
 }
